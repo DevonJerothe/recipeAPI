@@ -8,8 +8,8 @@ const recipeSchema = new Schema({
     rating: Number,
     tags: [String],
     course: [String],
-    ingredients: Map,
-    directions: Map,
+    ingredients: [String],
+    directions: [String],
     prep: String,
     cook: String,
     ready_in: String,
@@ -95,4 +95,6 @@ const recipeSchema = new Schema({
     }
 }, {collection: 'recipies'});
 
-const recipeModel = mongoose.model('Recipe', recipeSchema);
+const RecipeModel = mongoose.model('Recipe', recipeSchema);
+
+module.exports = RecipeModel;

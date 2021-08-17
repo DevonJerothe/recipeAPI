@@ -23,11 +23,11 @@ app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocs))
 
 
 //Connect to MongoDB
-const constants = require('./constants');
+const {mongoURI} = require('./constants')
 try {
     // Connect to the MongoDB cluster
     mongoose.connect(
-        `mongodb+srv://${constants.mongoUser}:${constants.mongoPass}@recipeapp.q9i0u.mongodb.net/${constants.mongoDB}?retryWrites=true&w=majority`,
+        mongoURI,
         { useNewUrlParser: true, useUnifiedTopology: true },
         () => console.log(" Mongoose is connected")
     );
