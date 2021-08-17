@@ -1,12 +1,12 @@
-import express from "express";
-import mongoose from "mongoose";
-import swaggerUI from "swagger-ui-express";
-import swaggerJSDoc from "swagger-jsdoc";
-import models from "./models";
-const app = express();
+const express = require("express");
+const mongoose = require("mongoose");
+const swaggerJSDoc = require("swagger-jsdoc")
+const swaggerUI = require("swagger-ui-express")
 
 //Handle routes
-import recipeRoute from './routes/recipes.js';
+const router = require("./routes/route");
+
+const app = express();
 
 const swaggerOptions = {
     definition: {
@@ -16,17 +16,18 @@ const swaggerOptions = {
             version: '1.0.0',
         },
     },
-    apis: ['server.js'], // files containing annotations as above
+    apis: ['./routes*.js'], // files containing annotations as above
 };
-
 const swaggerDocs = swaggerJSDoc(swaggerOptions)
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocs))
+
 
 //Connect to MongoDB
 const constants = require('./constants');
 try {
     // Connect to the MongoDB cluster
     mongoose.connect(
-        constants.mongoURI,
+        `mongodb+srv://${constants.mongoUser}:${constants.mongoPass}@recipeapp.q9i0u.mongodb.net/${constants.mongoDB}?retryWrites=true&w=majority`,
         { useNewUrlParser: true, useUnifiedTopology: true },
         () => console.log(" Mongoose is connected")
     );
@@ -35,6 +36,8 @@ try {
     console.log("could not connect");
 }
 
-app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocs))
+app.use('/', router)
 
-app.use(recipeRoute, '/recipes')
+app.listen(3000, () => {
+    console.log("Listening on PORT 3000")
+})

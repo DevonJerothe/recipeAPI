@@ -1,7 +1,12 @@
-export function getRandom(_req, res) {
+exports.getRecipe = (_req, res) => {
     res.send("WIP")
 }
 
-export function getRecipe(_req, res) {
+exports.getRandom = (_req, res) => {
     res.send("WIP")
 }
+
+exports.getFavorites = (_req, res) => {
+    res.send("WIP")
+}
+
