@@ -12,7 +12,7 @@ const recipeSchema = new Schema({
     directions: [String],
     prep: String,
     cook: String,
-    ready_in: String,
+    "ready in": String,
     servings: String,
     calories: Number, 
     nutrition: {

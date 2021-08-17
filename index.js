@@ -10,13 +10,23 @@ const app = express();
 
 const swaggerOptions = {
     definition: {
-        openapi: '3.0.0',
+        swagger: '2.0',
         info: {
             title: 'Recipe API',
             version: '1.0.0',
+            contact: {
+                name: 'Devon Jerothe',
+                url: 'https://github.com/DevonJerothe',
+                email: 'Devonjerothe@gmail.com'
+            }
         },
+        servers: [
+            {
+                url: 'http://localhost:3000/api/'
+            }
+        ],
     },
-    apis: ['./routes*.js'], // files containing annotations as above
+    apis: ['./routes/*.js'], // files containing annotations as above
 };
 const swaggerDocs = swaggerJSDoc(swaggerOptions)
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocs))
@@ -36,7 +46,10 @@ try {
     console.log("could not connect");
 }
 
-app.use('/', router)
+app.use('/api', router)
+app.get('/', (req, res) => {
+    res.send("Use /api or /api-docs")
+})
 
 app.listen(3000, () => {
     console.log("Listening on PORT 3000")
