@@ -1,13 +1,18 @@
 const express = require("express");
+const { urlencoded } = require("express");
 const mongoose = require("mongoose");
 const swaggerJSDoc = require("swagger-jsdoc")
 const swaggerUI = require("swagger-ui-express")
-
-//Handle routes
+const morgan = require("morgan")
 const router = require("./routes/route");
 
+//constructors
 const app = express();
+app.use(urlencoded({extended: true}))
+app.use(morgan('dev'))
+app.use('/api', router)
 
+//Create swagger docs
 const swaggerOptions = {
     definition: {
         swagger: '2.0',
@@ -33,7 +38,7 @@ app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocs))
 
 
 //Connect to MongoDB
-const {mongoURI} = require('./constants')
+const {mongoURI} = require('./constants');
 try {
     // Connect to the MongoDB cluster
     mongoose.connect(
@@ -45,11 +50,6 @@ try {
 } catch (e) {
     console.log("could not connect");
 }
-
-app.use('/api', router)
-app.get('/', (req, res) => {
-    res.send("Use /api or /api-docs")
-})
 
 app.listen(3000, () => {
     console.log("Listening on PORT 3000")

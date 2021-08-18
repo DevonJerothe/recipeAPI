@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const controller = require("../controllers/recipesController");
 
+// start definitions
 /** 
  * @swagger
  * "definitions": {
@@ -284,8 +285,7 @@ const controller = require("../controllers/recipesController");
  *   name: Recipes
  *   description: Recipies API 
  */
-
-
+// end definitions. 
 
 /**
  * @swagger
