@@ -10,10 +10,10 @@ const recipeSchema = new Schema({
     course: [String],
     ingredients: [String],
     directions: [String],
-    prep: String,
-    cook: String,
-    "ready in": String,
-    servings: String,
+    prep: Number,
+    cook: Number,
+    ready_in: Number,
+    servings: Number,
     calories: Number, 
     nutrition: {
         protein: {
@@ -93,7 +93,7 @@ const recipeSchema = new Schema({
           daily_value: String
         }
     }
-}, {collection: 'recipies'});
+}, {collection: 'recipes'});
 
 const RecipeModel = mongoose.model('Recipe', recipeSchema);
 

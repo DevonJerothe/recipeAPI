@@ -1,11 +1,20 @@
 const jwt = require('jsonwebtoken');
 const UserModel = require('../models/userModel')
+const validate = require('../utils/validation')
 
 exports.postRegister = async (req, res) => {
+    const user = new UserModel(req.body);
 
+    const modelState = validate.validateModel(user);
+    if(!modelState.isValid){
+        res.status(500).send(modelState.message);
+        return;
+    }
+
+    res.send(user);
 }
 
-exports.postLogin = async (req, res) => {
+exports.putLogin = async (req, res) => {
     //get userInfo
     let userID = "FAKE ID"
     createToken(userID)

@@ -1,5 +1,4 @@
 const express = require("express");
-const { urlencoded } = require("express");
 const mongoose = require("mongoose");
 const swaggerJSDoc = require("swagger-jsdoc")
 const swaggerUI = require("swagger-ui-express")
@@ -9,7 +8,8 @@ require('dotenv').config()
 
 //constructors
 const app = express();
-app.use(urlencoded({extended: true}))
+app.use(express.json())
+app.use(express.urlencoded({extended: true}))
 app.use(morgan('dev'))
 app.use('/api', router)
 
