@@ -283,7 +283,7 @@ const controller = require("../controllers/recipesController");
  * @swagger 
  * tags: 
  *   name: Recipes
- *   description: Recipies API 
+ *   description: Recipes API 
  */
 // end definitions. 
 

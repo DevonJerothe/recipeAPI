@@ -5,6 +5,7 @@ const swaggerJSDoc = require("swagger-jsdoc")
 const swaggerUI = require("swagger-ui-express")
 const morgan = require("morgan")
 const router = require("./routes/route");
+require('dotenv').config()
 
 //constructors
 const app = express();
@@ -36,13 +37,11 @@ const swaggerOptions = {
 const swaggerDocs = swaggerJSDoc(swaggerOptions)
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocs))
 
-
 //Connect to MongoDB
-const {mongoURI} = require('./constants');
 try {
     // Connect to the MongoDB cluster
     mongoose.connect(
-        mongoURI,
+        process.env.MONGODB_URI,
         { useNewUrlParser: true, useUnifiedTopology: true },
         () => console.log(" Mongoose is connected")
     );
