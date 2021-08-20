@@ -1,2 +1,4 @@
 
 constants.js
+.env
+node_modules/
