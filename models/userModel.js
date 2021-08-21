@@ -29,6 +29,8 @@ const userSchema = new Schema({
     last_login: Date
 }, {collection: 'users'});
 
+userSchema.set('validateBeforeSave', false)
+
 function validatePassword(password) {
     return /(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/.test(password);
 }
