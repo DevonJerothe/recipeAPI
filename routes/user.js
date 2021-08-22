@@ -7,9 +7,9 @@ const controller = require("../controllers/userController");
 
 // end definitions
 
-router.get("/login")
+router.put("/login", controller.putLogin)
 
-router.put("/register", controller.postRegister)
+router.put("/register", controller.putRegister)
 
 router.delete("/delete")
 
