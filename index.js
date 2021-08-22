@@ -1,6 +1,5 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const swaggerJSDoc = require("swagger-jsdoc")
 const swaggerUI = require("swagger-ui-express")
 const morgan = require("morgan")
 const router = require("./routes/route");
@@ -14,28 +13,8 @@ app.use(morgan('dev'))
 app.use('/api', router)
 
 //Create swagger docs
-const swaggerOptions = {
-    definition: {
-        swagger: '2.0',
-        info: {
-            title: 'Recipe API',
-            version: '1.0.0',
-            contact: {
-                name: 'Devon Jerothe',
-                url: 'https://github.com/DevonJerothe',
-                email: 'Devonjerothe@gmail.com'
-            }
-        },
-        servers: [
-            {
-                url: 'http://localhost:3000/api/'
-            }
-        ],
-    },
-    apis: ['./routes/*.js'], // files containing annotations as above
-};
-const swaggerDocs = swaggerJSDoc(swaggerOptions)
-app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocs))
+const swaggerDocument = require('./swagger.json');
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument))
 
 //Connect to MongoDB
 try {
