@@ -15,6 +15,11 @@
         "tags": [
           "Recipes"
         ],
+        "security": [
+          {
+            "token": []
+          }
+        ],
         "summary": "Get recipe by ID",
         "produces": [
           "application/json"
@@ -350,13 +355,80 @@
     "User": {
       "type": "object",
       "properties": {
-
+        "username": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "name": {
+          "type": "object",
+          "properties": {
+            "first": {
+              "type": "string"
+            },
+            "last": {
+              "type": "string"
+            }
+          }
+        },
+        "password": {
+          "type": "string"
+        },
+        "disliked_ingredients": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "liked_ingredients": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "favorites": {
+          "type": "object",
+          "properties": {
+            "breakfast": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "lunch": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "dinner": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "date_created": {
+          "type": "string"
+        },
+        "last_login": {
+          "type": "string"
+        }
       }
     }
   },
   "responses": {},
   "parameters": {},
-  "securityDefinitions": {},
+  "securityDefinitions": {
+    "token": {
+      "type": "apiKey",
+      "description": "Access Token",
+      "name": "authorization",
+      "in": "header"
+    }
+  },
   "tags": [
     {
       "name": "Recipes",
