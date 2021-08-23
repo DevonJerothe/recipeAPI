@@ -1,4 +1,4 @@
-var mongoose = require("mongoose");
+const mongoose = require("mongoose");
 const {Schema} = mongoose;
 
 const recipeSchema = new Schema({ 
@@ -8,12 +8,12 @@ const recipeSchema = new Schema({
     rating: Number,
     tags: [String],
     course: [String],
-    ingredients: Map,
-    directions: Map,
-    prep: String,
-    cook: String,
-    ready_in: String,
-    servings: String,
+    ingredients: [String],
+    directions: [String],
+    prep: Number,
+    cook: Number,
+    ready_in: Number,
+    servings: Number,
     calories: Number, 
     nutrition: {
         protein: {
@@ -93,6 +93,8 @@ const recipeSchema = new Schema({
           daily_value: String
         }
     }
-}, {collection: 'recipies'});
+}, {collection: 'recipes'});
 
-const recipeModel = mongoose.model('Recipe', recipeSchema);
+const RecipeModel = mongoose.model('Recipe', recipeSchema);
+
+module.exports = RecipeModel;

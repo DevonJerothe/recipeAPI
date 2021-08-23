@@ -1,0 +1,442 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Recipe API",
+    "version": "1.0.0",
+    "contact": {
+      "name": "Devon Jerothe",
+      "url": "https://github.com/DevonJerothe",
+      "email": "Devonjerothe@gmail.com"
+    }
+  },
+  "paths": {
+    "/api/recipe/{id}": {
+      "get": {
+        "tags": [
+          "Recipes"
+        ],
+        "security": [
+          {
+            "token": []
+          }
+        ],
+        "summary": "Get recipe by ID",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "Recipe ID",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Recipe JSON result",
+            "schema": {
+              "$ref": "#/definitions/Recipe"
+            }
+          },
+          "404": {
+            "description": "Recipe not found"
+          }
+        }
+      }
+    },
+    "/api/recipe/random/{count}": {
+      "get": {
+        "tags": [
+          "Recipes"
+        ],
+        "summary": "Get random recipes",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "count",
+            "description": "Number of recipes to return",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Recipe JSON list result",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Recipe"
+              }
+            }
+          },
+          "404": {
+            "description": "No Recipes Found"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Recipe": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "img": {
+          "type": "string"
+        },
+        "rating": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "course": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "ingredients": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "directions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "prep": {
+          "type": "string"
+        },
+        "cook": {
+          "type": "string"
+        },
+        "ready in": {
+          "type": "string"
+        },
+        "servings": {
+          "type": "string"
+        },
+        "calories": {
+          "type": "string"
+        },
+        "nutrition": {
+          "type": "object",
+          "properties": {
+            "protein": {
+              "type": "object",
+              "properties": {
+                "nutrient_value": {
+                  "type": "string"
+                },
+                "daily_value": {
+                  "type": "string"
+                }
+              }
+            },
+            "carbohydrates": {
+              "type": "object",
+              "properties": {
+                "nutrient_value": {
+                  "type": "string"
+                },
+                "daily_value": {
+                  "type": "string"
+                }
+              }
+            },
+            "dietary_fiber": {
+              "type": "object",
+              "properties": {
+                "nutrient_value": {
+                  "type": "string"
+                },
+                "daily_value": {
+                  "type": "string"
+                }
+              }
+            },
+            "sugars": {
+              "type": "object",
+              "properties": {
+                "nutrient_value": {
+                  "type": "string"
+                },
+                "daily_value": {
+                  "type": "string"
+                }
+              }
+            },
+            "fat": {
+              "type": "object",
+              "properties": {
+                "nutrient_value": {
+                  "type": "string"
+                },
+                "daily_value": {
+                  "type": "string"
+                }
+              }
+            },
+            "saturated_fat": {
+              "type": "object",
+              "properties": {
+                "nutrient_value": {
+                  "type": "string"
+                },
+                "daily_value": {
+                  "type": "string"
+                }
+              }
+            },
+            "cholesterol": {
+              "type": "object",
+              "properties": {
+                "nutrient_value": {
+                  "type": "string"
+                },
+                "daily_value": {
+                  "type": "string"
+                }
+              }
+            },
+            "vitamin_a_iu": {
+              "type": "object",
+              "properties": {
+                "nutrient_value": {
+                  "type": "string"
+                },
+                "daily_value": {
+                  "type": "string"
+                }
+              }
+            },
+            "niacin_equivalents": {
+              "type": "object",
+              "properties": {
+                "nutrient_value": {
+                  "type": "string"
+                },
+                "daily_value": {
+                  "type": "string"
+                }
+              }
+            },
+            "vitamin_b6": {
+              "type": "object",
+              "properties": {
+                "nutrient_value": {
+                  "type": "string"
+                },
+                "daily_value": {
+                  "type": "string"
+                }
+              }
+            },
+            "vitamin_c": {
+              "type": "object",
+              "properties": {
+                "nutrient_value": {
+                  "type": "string"
+                },
+                "daily_value": {
+                  "type": "string"
+                }
+              }
+            },
+            "folate": {
+              "type": "object",
+              "properties": {
+                "nutrient_value": {
+                  "type": "string"
+                },
+                "daily_value": {
+                  "type": "string"
+                }
+              }
+            },
+            "calcium": {
+              "type": "object",
+              "properties": {
+                "nutrient_value": {
+                  "type": "string"
+                },
+                "daily_value": {
+                  "type": "string"
+                }
+              }
+            },
+            "iron": {
+              "type": "object",
+              "properties": {
+                "nutrient_value": {
+                  "type": "string"
+                },
+                "daily_value": {
+                  "type": "string"
+                }
+              }
+            },
+            "magnesium": {
+              "type": "object",
+              "properties": {
+                "nutrient_value": {
+                  "type": "string"
+                },
+                "daily_value": {
+                  "type": "string"
+                }
+              }
+            },
+            "potassium": {
+              "type": "object",
+              "properties": {
+                "nutrient_value": {
+                  "type": "string"
+                },
+                "daily_value": {
+                  "type": "string"
+                }
+              }
+            },
+            "sodium": {
+              "type": "object",
+              "properties": {
+                "nutrient_value": {
+                  "type": "string"
+                },
+                "daily_value": {
+                  "type": "string"
+                }
+              }
+            },
+            "thiamin": {
+              "type": "object",
+              "properties": {
+                "nutrient_value": {
+                  "type": "string"
+                },
+                "daily_value": {
+                  "type": "string"
+                }
+              }
+            },
+            "calories_from_fat": {
+              "type": "object",
+              "properties": {
+                "nutrient_value": {
+                  "type": "string"
+                },
+                "daily_value": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "User": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "name": {
+          "type": "object",
+          "properties": {
+            "first": {
+              "type": "string"
+            },
+            "last": {
+              "type": "string"
+            }
+          }
+        },
+        "password": {
+          "type": "string"
+        },
+        "disliked_ingredients": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "liked_ingredients": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "favorites": {
+          "type": "object",
+          "properties": {
+            "breakfast": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "lunch": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "dinner": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "date_created": {
+          "type": "string"
+        },
+        "last_login": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "responses": {},
+  "parameters": {},
+  "securityDefinitions": {
+    "token": {
+      "type": "apiKey",
+      "description": "Access Token",
+      "name": "authorization",
+      "in": "header"
+    }
+  },
+  "tags": [
+    {
+      "name": "Recipes",
+      "description": "Recipes API"
+    },
+    {
+      "name": "Users",
+      "description": "Users API"
+    }
+  ]
+}
