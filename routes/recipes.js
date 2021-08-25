@@ -38,11 +38,11 @@ const router = express.Router();
  * }
  *
  */
-router.get("/:id", oAuth.getToken, controller.getRecipe)
+router.get("/details/:id", oAuth.getToken, controller.getRecipe)
 
 /**
  * @swagger
- * "/api/recipe/random/{count}": {
+ * "/api/recipe/random/{course}/{rows}/{page}": {
  *     "get": {
  *         "tags": [
  *             "Recipes"
@@ -53,9 +53,26 @@ router.get("/:id", oAuth.getToken, controller.getRecipe)
  *         ],
  *         "parameters": [
  *             {
+ *                 "in": "query",
+ *                 "name": "course",
+ *                 "description": "Course of recipe (Dinner/Lunch/Breakfast)",
+ *                 "required": "true",
+ *                 "type": "string",
+ *                 "enum": [
+ *                     "Breakfast",
+ *                     "Lunch",
+ *                     "Dinner"
+ *                 ]
+ *             },
+ *             {
  *                 "in": "path",
- *                 "name": "count",
- *                 "description": "Number of recipes to return",
+ *                 "name": "rows",
+ *                 "required": "true",
+ *                 "type": "integer",
+ *             },
+ *             {
+ *                 "in": "path",
+ *                 "name": "page",
  *                 "required": "true",
  *                 "type": "integer"
  *             }
@@ -77,7 +94,7 @@ router.get("/:id", oAuth.getToken, controller.getRecipe)
  *     }
  * }
  */
-router.get("/random/:count", controller.getRandom);
+router.get("/random/:rows/:page", oAuth.getToken, controller.getRandom);
 
 /**
  * 
