@@ -10,7 +10,7 @@
     }
   },
   "paths": {
-    "/api/recipe/{id}": {
+    "/api/recipe/details/{id}": {
       "get": {
         "tags": [
           "Recipes"
@@ -46,7 +46,7 @@
         }
       }
     },
-    "/api/recipe/random/{count}": {
+    "/api/recipe/random/{rows}/{page}": {
       "get": {
         "tags": [
           "Recipes"
@@ -57,9 +57,28 @@
         ],
         "parameters": [
           {
+            "in": "query",
+            "name": "course",
+            "description": "Course of Recipe (Breakfast/Lunch/Dinner)",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "Breakfast",
+              "Lunch",
+              "Dinner"
+            ]
+          },
+          {
             "in": "path",
-            "name": "count",
+            "name": "rows",
             "description": "Number of recipes to return",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "in": "path",
+            "name": "page",
+            "description": "page",
             "required": true,
             "type": "integer"
           }
@@ -70,14 +89,19 @@
             "schema": {
               "type": "array",
               "items": {
-                "$ref": "#/definitions/Recipe"
+                "$ref": "#/definitions/RecipeItem"
               }
             }
           },
           "404": {
             "description": "No Recipes Found"
           }
-        }
+        },
+        "security": [
+          {
+            "token": []
+          }
+        ]
       }
     }
   },
@@ -122,19 +146,19 @@
           }
         },
         "prep": {
-          "type": "string"
+          "type": "number"
         },
         "cook": {
-          "type": "string"
+          "type": "number"
         },
         "ready in": {
-          "type": "string"
+          "type": "number"
         },
         "servings": {
-          "type": "string"
+          "type": "number"
         },
         "calories": {
-          "type": "string"
+          "type": "number"
         },
         "nutrition": {
           "type": "object",
@@ -415,6 +439,26 @@
         },
         "last_login": {
           "type": "string"
+        }
+      }
+    },
+    "RecipeItem": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "img": {
+          "type": "string"
+        },
+        "rating": {
+          "type": "string"
+        },
+        "ready in": {
+          "type": "number"
+        },
+        "calories": {
+          "type": "number"
         }
       }
     }
